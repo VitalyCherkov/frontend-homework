@@ -33,4 +33,45 @@ QUnit.module('Тестируем функцию inverse', function () {
         assert.deepEqual(inverse([1, 2, 3, 4, 5], -5), [1, 2, 3, 4, 5]);
         assert.deepEqual(inverse([1, 2, 3, 4, 5], -15), [1, 2, 3, 4, 5]);
     });
+
+    // Т.к. основные моменты уже протестированы, но небходимо все равно написать несколько своих тестов, то
+    // решил написать это:
+
+    QUnit.test('Инвертирует массив из трех чисел', function (assert) {
+        assert.deepEqual(inverse([1, 2, 3]), [3, 2, 1], 'inverse([1, 2, 3]) equals to [3, 2, 1]');
+        assert.deepEqual(inverse([1, 2, 3, 4]), [4, 3, 2, 1], 'inverse([1, 2, 3]) equals to [3, 2, 1]');
+    });
+
+    QUnit.test('Инвертирует массив кроме начала', function (assert) {
+        assert.deepEqual(inverse([1, 2, 3, 4, 5], 1), [1, 5, 4, 3, 2],
+            'inverse([1, 2, 3, 4, 5], 5) equals to [1, 5, 4, 3, 2]');
+        assert.deepEqual(inverse([1, 2, 3, 4, 5], 2), [1, 2, 5, 4, 3],
+            'inverse([1, 2, 3, 4, 5], 5) equals to [1, 2, 5, 4, 3]');
+        assert.deepEqual(inverse([1, 2, 3, 4, 5], 3), [1, 2, 3, 5, 4],
+            'inverse([1, 2, 3, 4, 5], 5) equals to [1, 2, 3, 5, 4]');
+        assert.deepEqual(inverse([1, 2, 3, 4, 5], 4), [1, 2, 3, 4, 5],
+            'inverse([1, 2, 3, 4, 5], 5) equals to [1, 2, 3, 4, 5]');
+        assert.deepEqual(inverse([1, 2, 3, 4, 5], 5), [1, 2, 3, 4, 5],
+            'inverse([1, 2, 3, 4, 5], 5) equals to [1, 2, 3, 4, 5]');
+    });
+
+    QUnit.test('Инвертирует массив кроме конца', function (assert) {
+        assert.deepEqual(inverse([1, 2, 3, 4, 5], -1), [4, 3, 2, 1, 5],
+            'inverse([1, 2, 3, 4, 5], 5) equals to [4, 3, 2, 1, 5]');
+        assert.deepEqual(inverse([1, 2, 3, 4, 5], -2), [3, 2, 1, 4, 5],
+            'inverse([1, 2, 3, 4, 5], 5) equals to [3, 2, 1, 4, 5]');
+        assert.deepEqual(inverse([1, 2, 3, 4, 5], -3), [2, 1, 3, 4, 5],
+            'inverse([1, 2, 3, 4, 5], 5) equals to [2, 1, 3, 4, 5]');
+        assert.deepEqual(inverse([1, 2, 3, 4, 5], -4), [1, 2, 3, 4, 5],
+            'inverse([1, 2, 3, 4, 5], 5) equals to [1, 2, 3, 4, 5]');
+        assert.deepEqual(inverse([1, 2, 3, 4, 5], -5), [1, 2, 3, 4, 5],
+            'inverse([1, 2, 3, 4, 5], 5) equals to [1, 2, 3, 4, 5]');
+    });
+
+    QUnit.test('Не меняет массив при неверных пределах', function (assert) {
+        assert.deepEqual(inverse([1, 2, 3], 4), [1, 2, 3],
+            'inverse([1, 2, 3], 4) equals to [1, 2, 3]');
+        assert.deepEqual(inverse([1, 2, 3], -4), [1, 2, 3],
+            'inverse([1, 2, 3], -4) equals to [1, 2, 3]');
+    });
 });
